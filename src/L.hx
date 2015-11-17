@@ -18,9 +18,8 @@ extern class L
 		?shadowAnchor:Array<Int>
 	}):Icon;
 	
-	//L.marker([44.8473196,-0.5853868],{icon:icon}).bindPopup(txt).addTo(map);
 	public static function marker(coords:Array<Float>, options:{ icon:Icon } ):Marker;
-	
+	public static function tileLayer(tileUrl:String, options: { ?minZoom:Int, ?maxZoom:Int, ?attribution:String, ?accessToken:String, ?id:String } ):TileLayer;
 	
 }
 
@@ -33,7 +32,9 @@ extern class Map {
 
 @:native("L.TileLayer")
 extern class TileLayer {
-	public function new(tileUrl:String, options:{ minZoom:Int,maxZoom:Int,attribution:String } );
+	public function new(tileUrl:String, options: { ?minZoom:Int, ?maxZoom:Int, ?attribution:String,?accessToken:String,?id:String } );
+	public function addTo(map:Map):TileLayer;
+	
 }
 
 @:native("L.Icon")
