@@ -1,0 +1,14 @@
+{
+  "name": "hxleaflet",
+  "url" : "https://github.com/bablukid/hxleaflet/",  
+  "license": "GNU GPL",
+  "classPath": "src",
+  "tags": ["web", "javascript","maps"],
+  "description": "haxe port of Leaflet js",
+  "version": "1.0.0",
+  "releasenote": "",
+  "contributors": ["bablukid"],
+  "dependencies": {
+  
+  }
+}
