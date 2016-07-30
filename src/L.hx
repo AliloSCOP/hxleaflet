@@ -1,6 +1,11 @@
 
 /**
  * Leaflet.js externs
+ * 
+ * @doc http://leafletjs.com/reference.html
+ * @doc https://github.com/Leaflet/Leaflet
+ * 
+ * 
  * @author fbarbut<francois.barbut@gmail.com>
  */
 extern class L
@@ -27,7 +32,25 @@ extern class L
 extern class Map {
 	
 	public function setView(coords: Array<Float>, zoomLevel:Int):Map;
-	public function addLayer(layer:TileLayer):Map;
+	public function addLayer(layer:Dynamic):Map;  //can be any ILayer : marker, tileLayer ... http://leafletjs.com/reference.html#ilayer
+	public function removeLayer(layer:Dynamic):Map;
+	public function on(event:String, callback:Dynamic->Void):Void;
+	public function getBounds():LatLngBounds;
+	
+}
+
+
+@:native("L.LatLngBounds")
+extern class LatLngBounds {
+	public function getSouthWest():LatLng;
+	public function getNorthEast():LatLng;
+}
+
+
+@:native("L.LatLng")
+extern class LatLng {
+	public var lat:Float;
+	public var lng:Float;
 }
 
 @:native("L.TileLayer")
@@ -46,7 +69,7 @@ extern class Icon {
 
 
 @:native("L.Marker")
-extern class Marker {
+extern class Marker extends js.html.EventTarget{
 	public function bindPopup(html:String ):Marker;
 	public function addTo(map:Map):Marker;
 }
