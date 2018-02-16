@@ -1,3 +1,4 @@
+package leaflet;
 
 /**
  * Leaflet.js externs for Leaftlet 0.7.7
@@ -8,36 +9,25 @@
  * 
  * @author fbarbut<francois.barbut@gmail.com>
  */
+
+@:jsRequire('leaflet')  
 extern class L
 {
-	
 	public static function map(elementId:String,?options:MapOptions):LeafletMap;
-	public static function icon(options:{
-		iconUrl:String,
-		?iconRetinaUrl:String,
-		?iconSize:Array<Int>,
-		?iconAnchor:Array<Int>,
-		?popupAnchor:Array<Int>,
-		?shadowUrl:String,
-		?shadowRetinaUrl:String,
-		?shadowSize: Array<Int>,
-		?shadowAnchor:Array<Int>
-	}):Icon;
-	
+	public static function icon(options:IconOptions):Icon;
+	public static function latLng(lat:Float, lng:Float):Dynamic;
 	public static function marker(coords:Array<Float>, options:{ icon:Icon } ):Marker;
 	public static function tileLayer(tileUrl:String, options: TileLayerOptions ):TileLayer;
-	
 }
 
 @:native("L.Map")
-extern class LeafletMap {
-	
+extern class LeafletMap
+{
 	public function setView(coords: Array<Float>, zoomLevel:Int):LeafletMap;
 	public function addLayer(layer:Dynamic):LeafletMap;  //can be any ILayer : marker, tileLayer ... http://leafletjs.com/reference.html#ilayer
 	public function removeLayer(layer:Dynamic):LeafletMap;
 	public function on(event:String, callback:Dynamic->Void):Void;
 	public function getBounds():LatLngBounds;
-	
 }
 
 
@@ -85,8 +75,20 @@ typedef TileLayerOptions = {
 	?zoomControl: Bool
 }
 
-
 typedef MapOptions = {
 	?scrollWheelZoom:Bool,
 	?zoomControl:Bool
+}
+
+typedef IconOptions = {
+	iconUrl:String,
+	?iconRetinaUrl:String,
+	?iconSize:Array<Int>,
+	?iconAnchor:Array<Int>,
+	?popupAnchor:Array<Int>,
+	?shadowUrl:String,
+	?shadowRetinaUrl:String,
+	?shadowSize: Array<Int>,
+	?shadowAnchor:Array<Int>,
+	?className:String
 }
